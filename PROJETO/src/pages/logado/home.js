@@ -105,7 +105,7 @@ export default class home extends Component {
           </View>
         )}
 
-        keyExtractor={ item => item.email}
+        keyExtractor={ item => item.login.uuid}
 
         refreshing={this.state.refreshing}
         onRefresh={this.handleRefresh}
