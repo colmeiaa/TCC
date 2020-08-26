@@ -6,6 +6,8 @@ import Login from './pages/login';
 import Home from './TabNavHome.routes';
 import tabNav from './TabNavCadastro.routes';
 import Detail from './pages/logado/detail';
+import DetailExplo from './pages/logado/detailExplo';
+// import explorer from './pages/logado/explorer';
 import CheckBox from '../src/pages/cadastros/checkbox';
 
 const Stack = createStackNavigator();
@@ -19,6 +21,8 @@ export default function Routes(){
                 <Stack.Screen name='CheckBox' component={CheckBox} />
                 <Stack.Screen name='Cadastro' component={tabNav} />
                 <Stack.Screen name='Detail' component={Detail} />
+                {/* <Stack.Screen name='explorer' component={explorer} /> */}
+                <Stack.Screen name='DetailExplo' component={DetailExplo} />
             </Stack.Navigator>
         </NavigationContainer>
     );

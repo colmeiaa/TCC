@@ -10,8 +10,7 @@ export default class home extends Component {
 
     this.state ={
       data: [],
-      refreshing: false,
-
+      refreshing: false
     }
   };
 
@@ -85,9 +84,6 @@ export default class home extends Component {
                 <Text style={styles.email}> {item.location.city}{","} {item.location.state} </Text>
               </View>
             </View>
-
-            
-            
             
           </View>
           
@@ -105,7 +101,7 @@ export default class home extends Component {
           </View>
         )}
 
-        keyExtractor={ item => item.login.uuid}
+        keyExtractor={ (item) => item.login.uuid}
 
         refreshing={this.state.refreshing}
         onRefresh={this.handleRefresh}
@@ -122,8 +118,6 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
-    marginBottom:15
   },
 
   txt: {
