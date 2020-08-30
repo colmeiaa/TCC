@@ -18,7 +18,7 @@ export default class home extends Component {
 
     // fetch('https://randomuser.me/api/?results=15')
     fetch( 'https://github.com/colmeiaa/TCC/blob/gabrielmk/PROJETO/users.json' )
-        .then( res => res.json() )
+        .then( res => res.text() )
         .then( res => {
           this.setState({
             data: res.results || [],
