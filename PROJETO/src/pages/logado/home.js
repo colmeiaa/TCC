@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, SafeAreaView, StatusBar } from 'react-native';
-
-
+import USERS from '../../../users.json'
+const user = USERS
 
 export default class home extends Component {
 
@@ -16,7 +16,8 @@ export default class home extends Component {
 
   loadUsers = () => {
 
-      fetch('https://randomuser.me/api/?results=15')
+    // fetch('https://randomuser.me/api/?results=15')
+    fetch( 'https://randomuser.me/api/?results=15' )
         .then( res => res.json() )
         .then( res => {
           this.setState({
@@ -55,7 +56,7 @@ export default class home extends Component {
         renderItem={({ item }) => (
 
           <View style={styles.body}>
-            <TouchableOpacity 
+            {/* <TouchableOpacity 
           onPress={ () => this.props.navigation.navigate('Detail', 
           {
             img: item.picture.thumbnail,
@@ -71,23 +72,26 @@ export default class home extends Component {
             username: item.login.username
           }
             )}
-          >
+          > */}
           <View style={{alignItems:"center"}}>
             <View style={styles.line}> 
               <Image 
                 style={styles.avatar}
-                source={{ uri: item.picture.thumbnail}}
+                // source={{ uri: item.picture.thumbnail}}
+                source={{ uri: item.fotoPerfil}}
               />
 
               <View style={styles.info}>
-                <Text style={styles.name}> {item.name.first} {item.name.last}</Text>
-                <Text style={styles.email}> {item.location.city}{","} {item.location.state} </Text>
+                {/* <Text style={styles.name}> {item.name.first} {item.name.last}</Text> */}
+                <Text style={styles.name}> {item.nome}</Text>
+                {/* <Text style={styles.email}> {item.location.city}{","} {item.location.state} </Text> */}
+                <Text style={styles.email}> {item.endereco} </Text>
               </View>
             </View>
             
           </View>
           
-        </TouchableOpacity>
+        {/* </TouchableOpacity> */}
             
             <View style={{alignItems: 'center'}}>
               <Image 

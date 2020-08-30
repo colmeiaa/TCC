@@ -46,10 +46,11 @@ export default class explorer extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <View>
-          <Text style={{fontSize:30, fontWeight: 'bold', padding:5}}>
+          <Text style={{fontSize:30, fontWeight: 'bold'}}>
             Explorer
           </Text>
         <FlatList  
+          style={{marginBottom: 70}}
           numColumns={numberGrid} 
           data={this.state.data} 
           renderItem={({ item })=> (
