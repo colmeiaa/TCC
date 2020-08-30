@@ -17,7 +17,7 @@ export default class home extends Component {
   loadUsers = () => {
 
     // fetch('https://randomuser.me/api/?results=15')
-    fetch( 'https://randomuser.me/api/?results=15' )
+    fetch( 'https://github.com/colmeiaa/TCC/blob/gabrielmk/PROJETO/users.json' )
         .then( res => res.json() )
         .then( res => {
           this.setState({
