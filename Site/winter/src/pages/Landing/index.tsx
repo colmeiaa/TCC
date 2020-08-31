@@ -31,12 +31,14 @@ function Landing(){
                         Venha participar 
                     </p>     
                 </div>
-                
-                <img
-                    src={landingImg}
-                    alt="Plataforma "
-                    className="hero-image"
-                />
+                <div className="hero">
+
+                    <img
+                        src={landingImg}
+                        alt="Plataforma "
+                        className="hero-image"
+                    />
+                </div>
                 <div>
                     <div className="buttons-container">
                         <a href="/about" className="about">
