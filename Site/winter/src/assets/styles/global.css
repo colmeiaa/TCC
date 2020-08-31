@@ -53,6 +53,25 @@ textarea{
     max-width: 700px;
 }
 
+.button-back-default a{
+    width: 20rem;
+    height: 5rem;
+    border-radius: 2rem;
+    margin: 2rem;
+    font: 700 2.0rem Indie Flower;
+
+    display: flex;
+    align-items:  center;
+    justify-content:  center;
+
+    text-decoration: none;
+    color: var(--color-button-text);
+    background-color: var(--color-primary-lighter);
+    
+    transition: background-color 0.2s;
+}
+
+
 @media (min-width:700px){
     :root{
         font-size: 62.5%;

@@ -1,11 +1,9 @@
 import React from 'react';
 
-function About(){
-    return (
+function Manual(){
+    return(
         <div>
-            <h1>
-                About
-            </h1>
+            <h1>Manual</h1>
             <div className="button-back-default">
                 <a href="/" className="back">
                     Back
@@ -13,8 +11,7 @@ function About(){
             </div>
 
         </div>
-    )
-
+    );
 }
 
-export default About;
+export default Manual;

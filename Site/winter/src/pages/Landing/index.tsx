@@ -2,7 +2,7 @@
 
 import './styles.css';
 
-import logoImg from '../../assets/images/Winter-Florest.svg';
+import logoImg from '../../assets/images/Winter-Forest.svg';
 import landingImg from '../../assets/images/mobile.svg';
 
 import play from '../../assets/images/icons/google-play-badge.png';
@@ -18,7 +18,7 @@ function Landing(){
                     <h2>Plataforma para Acampamento</h2>
                     <p>
                         <h4>Esse é o projeto de TCC</h4>
-                        Paulo Vinicius -D3708H-9 &     Gabriel Rodrigues - [RA]
+                        Paulo Vinicius -D3708H-9 & Gabriel Rodrigues - [RA]
                         <br />
                         Gabriel [RA] - Fabricio .[RA]
                         <br/>
@@ -37,12 +37,13 @@ function Landing(){
                     alt="Plataforma "
                     className="hero-image"
                 />
-                <div><div className="buttons-container">
-                        <a href="" className="about">
+                <div>
+                    <div className="buttons-container">
+                        <a href="/about" className="about">
                             About
                         </a>
 
-                        <a href="" className="manual">
+                        <a href="/Manual" className="manual">
                             Guia
                         </a>
                     </div>
