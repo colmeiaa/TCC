@@ -23,12 +23,11 @@ function Landing(){
                     alt="Plataforma "
                     className="hero-image"
                 />
-                <div>
-                    <div className="buttons-container">
+                <div><div className="buttons-container">
                         <a href="" className="about">
                             About
                         </a>
-                        
+
                         <a href="" className="manual">
                             Guia
                         </a>

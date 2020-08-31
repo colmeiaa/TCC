@@ -45,7 +45,7 @@
     text-decoration: none;
     color: var(--color-button-text);
 
-    transition: background-color 0.5s;
+    transition: background-color 0.2s;
 }
 
 .buttons-app-container img{
@@ -85,6 +85,11 @@
 
 .buttons-container a.about:hover{
     background: var(--color-primary-light);
+}
+
+
+.buttons-container a.manual:hover{
+    background: var(--color-secundary-dark);
 }
 
 .buttons-app-container a :first-child{
@@ -149,7 +154,9 @@
     
     .hero-image{
         grid-area: hero;
-        justify-self: end;
+        margin-top: 7rem;
+        margin-left: 10rem;
+        justify-self: center;
     }
     
     .buttons-container{
