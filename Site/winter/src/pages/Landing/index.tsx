@@ -1,4 +1,4 @@
-import React from 'react';
+    import React from 'react';
 
 import './styles.css';
 
@@ -28,6 +28,7 @@ function Landing(){
                         <a href="" className="about">
                             About
                         </a>
+                        
                         <a href="" className="manual">
                             Guia
                         </a>
@@ -37,7 +38,7 @@ function Landing(){
                     <div className="buttons-app-container">
                         
                         <img src={play} alt="play"/>
-                        
+
                         <img src={apple} alt="apple"/>
                         
                     </div>
