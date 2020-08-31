@@ -25,7 +25,7 @@ function Landing(){
                         Este Projeto visa criara um aplicativo para ajudar pessoas que viam acampar 
                         com uma parte offline aonde há um guia que irá ajudar a os inciantes ou não 
                         com as melhores escolhas de como sobreviver em diversos biomas , com dicas de como montar 
-                        sua barra , há como ascender sua fogueira. Alem de dicas da comunidade.
+                        sua barraca , há como ascender sua fogueira. Alem de dicas da comunidade.
                         Ee uma funcionalidade online onde voce poderá compartilhar experiencias , e formar um grupo 
                         com varias pessoas , para campar. Incluindp uma funcionalidade de divisão de atividades .
                         Venha participar 
