@@ -50,7 +50,7 @@ export default class explorer extends Component {
             Explorer
           </Text>
         <FlatList  
-          style={{marginBottom: 70}}
+          style={{marginBottom: 35}}
           numColumns={numberGrid} 
           data={this.state.data} 
           renderItem={({ item })=> (

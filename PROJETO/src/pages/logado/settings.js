@@ -12,7 +12,6 @@ export default class settings extends Component {
     super(props);
 
     this.state ={
-      dataInfo: [],
       data: [],
       refreshing: false
     }
@@ -20,12 +19,11 @@ export default class settings extends Component {
 
   loadUsers = () => {
 
-    fetch('https://randomuser.me/api/?results=40')
+    fetch('http://localhost:3000/results')
       .then( res => res.json() )
       .then( res => {
         this.setState({
-          data: res.results || [],
-          dataInfo: res.results || [],
+          data: res,
           refreshing: false,
         })
       })
@@ -46,67 +44,62 @@ export default class settings extends Component {
     };
 
   componentDidMount(){
-
     this.loadUsers();
-
-  //   var firebaseConfig = {
-  //       apiKey: "AIzaSyA8_2nds6T3AZuuhNKdmTdE0zDim5JsQo8",
-  //       authDomain: "appteste-d6f8f.firebaseapp.com",
-  //       databaseURL: "https://appteste-d6f8f.firebaseio.com",
-  //       projectId: "appteste-d6f8f",
-  //       storageBucket: "appteste-d6f8f.appspot.com",
-  //       messagingSenderId: "528755303869",
-  //       appId: "1:528755303869:web:11955e0e9f50c75b061ed4"
-  //     };
-  //     // Initialize Firebase
-  //     if ( ! firebase . apps . length ) {
-  //       firebase . initializeApp (firebaseConfig);
-  //  }
 }
 
-      tryLoginOut(){
-        const loginOutSucess = user => {
-            console.log('Deu certo DESLOGAR')
-            this.props.navigation.navigate('Login');
-        }
+      // tryLoginOut(){
+      //   const loginOutSucess = user => {
+      //       console.log('Deu certo DESLOGAR')
+      //       this.props.navigation.navigate('Login');
+      //   }
+      // }
 
-        firebase.auth().signOut()
-          .then(loginOutSucess);
-      }
-
-      renderButtom(){
-        return(
-            <TouchableOpacity 
-            style={styles.button}
-            onPress={ () => this.tryLoginOut() }
-            > 
-            <Text style={styles.txtButton}>
-                LoginOut
-            </Text>
-            </TouchableOpacity>
-        );
-      };
+      // renderButtom(){
+      //   return(
+      //       <TouchableOpacity 
+      //       style={styles.button}
+      //       onPress={ () => this.tryLoginOut() }
+      //       > 
+      //       <Text style={styles.txtButton}>
+      //           LoginOut
+      //       </Text>
+      //       </TouchableOpacity>
+      //   );
+      // };
 
 
   render() {
     return (
       <SafeAreaView style={{flex: 1}}>
+        
+        
+        { this.state.data.map((data, index) => (
+          console.log("index renderizados "+ index),
+          <View key={data.id} style={{ marginTop: 15, marginLeft: 10}}>
+                    <View style={{flexDirection: 'column', alignItems: 'center'}}>
+                      <Image 
+                      style={styles.avatar}
+                      source={{ uri: data.fotoPerfil}}
+                      />
+                      <View style={{flexDirection:'column'}}>
+                          <View  key={data.id} style={{paddingLeft:10}}>
+                            <Text style={{ fontWeight: 'bold' }}>{data.nome}</Text>
+                          </View>
+                          <View style={{paddingLeft:10}}>
+                            <Text>{data.email}</Text>
+                          </View>
+                      </View>
+                    </View>
+              </View>
+          ))}
+        
         <View style={styles.container}>
-      <FlatList 
-      data={this.state.dataInfo}
-      keyExtractor={ item => item.login.md5}
-      renderItem={({ item }) => (
-        <Text>
-          {item.name.first}
-        </Text>
-      )}
-      />
-     
+
        <FlatList  
-        // style={{marginBottom: 70}}
         numColumns={numberGrid} 
         data={this.state.data} 
-        renderItem={({ item })=> (
+        renderItem={({ item})=> (
+
           <TouchableOpacity 
           onPress={ () => this.props.navigation.navigate('DetailExplo',
           {
@@ -121,7 +114,7 @@ export default class settings extends Component {
           <View>
             <Image 
               style={styles.itemImage}
-              source={{ uri: item.picture.large}}
+              source={{ uri: item.fotoPerfil}}
             />
           </View>
 
@@ -129,13 +122,14 @@ export default class settings extends Component {
           
         )} 
         
-        keyExtractor={ item => item.login.uuid} 
+        keyExtractor={ item => item.id} 
 
         // refreshing={this.state.refreshing}
         // onRefresh={this.handleRefresh}
         />
 
         </View>
+
       </SafeAreaView>
     )
   }
@@ -155,5 +149,12 @@ const styles = StyleSheet.create({
 
     item: {
       flex:1
+    },
+    
+    avatar: {
+      width:100,
+      height:100,
+      borderRadius:55,
+      padding:5
     },
 })

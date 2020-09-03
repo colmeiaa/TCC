@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, TextInput,TouchableOpacity, Text, ActivityIndicator } from 'react-native';
 import firebase from '@firebase/app';
+import api from './api'
 import '@firebase/auth';
 
 import FormRow from '../components/FormRow';
@@ -19,23 +20,22 @@ export default class Login extends React.Component {
         }
     }
 
-    componentDidMount(){
+    // componentDidMount(){
 
-        var firebaseConfig = {
-            apiKey: "AIzaSyA8_2nds6T3AZuuhNKdmTdE0zDim5JsQo8",
-            authDomain: "appteste-d6f8f.firebaseapp.com",
-            databaseURL: "https://appteste-d6f8f.firebaseio.com",
-            projectId: "appteste-d6f8f",
-            storageBucket: "appteste-d6f8f.appspot.com",
-            messagingSenderId: "528755303869",
-            appId: "1:528755303869:web:11955e0e9f50c75b061ed4"
-          };
-          // Initialize Firebase
-          if ( ! firebase . apps . length ) {
-            firebase . initializeApp (firebaseConfig);
-       }
-    }
-
+    //     var firebaseConfig = {
+    //         apiKey: "AIzaSyA8_2nds6T3AZuuhNKdmTdE0zDim5JsQo8",
+    //         authDomain: "appteste-d6f8f.firebaseapp.com",
+    //         databaseURL: "https://appteste-d6f8f.firebaseio.com",
+    //         projectId: "appteste-d6f8f",
+    //         storageBucket: "appteste-d6f8f.appspot.com",
+    //         messagingSenderId: "528755303869",
+    //         appId: "1:528755303869:web:11955e0e9f50c75b061ed4"
+    //       };
+    //       // Initialize Firebase
+    //       if ( ! firebase . apps . length ) {
+    //         firebase . initializeApp (firebaseConfig);
+    //    }
+    // }
 
     onChangeHandler( field , value){        // Cuida dos inputs
         this.setState({

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, SafeAreaView, StatusBar } from 'react-native';
-import USERS from '../../../users.json'
-const user = USERS
+
 
 export default class home extends Component {
-
+  
   constructor(props) {
     super(props);
 
@@ -17,11 +16,11 @@ export default class home extends Component {
   loadUsers = () => {
 
     // fetch('https://randomuser.me/api/?results=15')
-    fetch( 'https://github.com/colmeiaa/TCC/blob/gabrielmk/PROJETO/users.json' )
-        .then( res => res.text() )
+    fetch( 'http://localhost:3000/results')
+        .then( res => res.json() )
         .then( res => {
           this.setState({
-            data: res.results || [],
+            data: res,
             refreshing: false,
           })
         })
@@ -44,18 +43,19 @@ export default class home extends Component {
 
   render() {
     return (
-    <SafeAreaView style={styles.container}>  
+      <SafeAreaView style={styles.container}>  
       <View style={{justifyContent:'center',alignItems:'center'}}>
              <Text style={styles.txt}>
                   AcampApp
              </Text>
              
         <FlatList 
-        style={{marginBottom:15}}
+        // style={{marginBottom:15}}
         data={this.state.data}
+        keyExtractor={ item => String(item.id)}
         renderItem={({ item }) => (
 
-          <View style={styles.body}>
+          <View>
             {/* <TouchableOpacity 
           onPress={ () => this.props.navigation.navigate('Detail', 
           {
@@ -96,16 +96,15 @@ export default class home extends Component {
             <View style={{alignItems: 'center'}}>
               <Image 
                 style={styles.foto}
-                source={{ uri: item.picture.large}}
+                source={{ uri: item.fotoPerfil}}
               />
             <View style={{ borderBottomColor: "#ccc",borderBottomWidth: 0.8, alignSelf:"stretch"}}>
-              <Text style={{padding:5, marginBottom:15}}>Esse é o meu username: {item.login.username} e essa é minha senha: {item.login.password}</Text>
+              <Text style={{padding:5, marginBottom:15}}>{item.descricao}</Text>
             </View>
             </View>
           </View>
         )}
 
-        keyExtractor={ (item) => item.login.uuid}
 
         refreshing={this.state.refreshing}
         onRefresh={this.handleRefresh}
