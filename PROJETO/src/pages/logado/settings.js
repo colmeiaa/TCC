@@ -3,6 +3,7 @@ import { View, Text, FlatList, TouchableOpacity, StyleSheet, Dimensions, Image, 
 import firebase from 'firebase';
 let {width} = Dimensions.get('window')
 
+const index = 1
 let numberGrid = 3
 let itemWidth = width / numberGrid
 
@@ -45,7 +46,7 @@ export default class settings extends Component {
 
   componentDidMount(){
     this.loadUsers();
-}
+};
 
       // tryLoginOut(){
       //   const loginOutSucess = user => {
@@ -67,15 +68,21 @@ export default class settings extends Component {
       //   );
       // };
 
-
   render() {
     return (
       <SafeAreaView style={{flex: 1}}>
         
         
-        { this.state.data.map((data, index) => (
-          console.log("index renderizados "+ index),
-          <View key={data.id} style={{ marginTop: 15, marginLeft: 10}}>
+        { this.state.data.map((data) => (
+          // const first = data.id.filter(item => item.id --'id'[1]);
+          
+          //console.log(data),
+        //  function(listaData){
+        //   listaData.map((dt) =>{
+        //     console.log(dt)
+        //   })
+        //  },
+          <View keyExtractor={ data => data.id === 'id'+[1]} style={{ marginTop: 15, marginLeft: 10}}>
                     <View style={{flexDirection: 'column', alignItems: 'center'}}>
                       <Image 
                       style={styles.avatar}
