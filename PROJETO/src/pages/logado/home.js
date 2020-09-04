@@ -2,26 +2,25 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, SafeAreaView, StatusBar } from 'react-native';
 
 
-
 export default class home extends Component {
-
+  
   constructor(props) {
     super(props);
 
     this.state ={
       data: [],
-      refreshing: false,
-
+      refreshing: false
     }
   };
 
   loadUsers = () => {
 
-      fetch('https://randomuser.me/api/?results=15')
+    // fetch('https://randomuser.me/api/?results=15')
+    fetch( 'http://localhost:3000/results')
         .then( res => res.json() )
         .then( res => {
           this.setState({
-            data: res.results || [],
+            data: res,
             refreshing: false,
           })
         })
@@ -44,19 +43,20 @@ export default class home extends Component {
 
   render() {
     return (
-    <SafeAreaView style={styles.container}>  
+      <SafeAreaView style={styles.container}>  
       <View style={{justifyContent:'center',alignItems:'center'}}>
              <Text style={styles.txt}>
                   AcampApp
              </Text>
              
         <FlatList 
-        style={{marginBottom:15}}
+        // style={{marginBottom:15}}
         data={this.state.data}
+        keyExtractor={ item => String(item.id)}
         renderItem={({ item }) => (
 
-          <View style={styles.body}>
-            <TouchableOpacity 
+          <View>
+            {/* <TouchableOpacity 
           onPress={ () => this.props.navigation.navigate('Detail', 
           {
             img: item.picture.thumbnail,
@@ -72,40 +72,39 @@ export default class home extends Component {
             username: item.login.username
           }
             )}
-          >
+          > */}
           <View style={{alignItems:"center"}}>
             <View style={styles.line}> 
               <Image 
                 style={styles.avatar}
-                source={{ uri: item.picture.thumbnail}}
+                // source={{ uri: item.picture.thumbnail}}
+                source={{ uri: item.fotoPerfil}}
               />
 
               <View style={styles.info}>
-                <Text style={styles.name}> {item.name.first} {item.name.last}</Text>
-                <Text style={styles.email}> {item.location.city}{","} {item.location.state} </Text>
+                {/* <Text style={styles.name}> {item.name.first} {item.name.last}</Text> */}
+                <Text style={styles.name}> {item.nome}</Text>
+                {/* <Text style={styles.email}> {item.location.city}{","} {item.location.state} </Text> */}
+                <Text style={styles.email}> {item.endereco} </Text>
               </View>
             </View>
-
-            
-            
             
           </View>
           
-        </TouchableOpacity>
+        {/* </TouchableOpacity> */}
             
             <View style={{alignItems: 'center'}}>
               <Image 
                 style={styles.foto}
-                source={{ uri: item.picture.large}}
+                source={{ uri: item.fotoPerfil}}
               />
             <View style={{ borderBottomColor: "#ccc",borderBottomWidth: 0.8, alignSelf:"stretch"}}>
-              <Text style={{padding:5, marginBottom:15}}>Esse é o meu username: {item.login.username} e essa é minha senha: {item.login.password}</Text>
+              <Text style={{padding:5, marginBottom:15}}>{item.descricao}</Text>
             </View>
             </View>
           </View>
         )}
 
-        keyExtractor={ item => item.login.uuid}
 
         refreshing={this.state.refreshing}
         onRefresh={this.handleRefresh}
@@ -122,8 +121,6 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
-    marginBottom:15
   },
 
   txt: {
