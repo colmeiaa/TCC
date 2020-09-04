@@ -3,9 +3,9 @@ import { View, Text, StyleSheet, Image }  from 'react-native';
 
 export default function detailExplo( { route } ){
 
-  const { username } = route.params;
+  const { userrname } = route.params;
   const { name } = route.params;
-  const { lastName } = route.params;
+  // const { lastName } = route.params;
   const { img } = route.params;
   const { country } = route.params
   const { state } = route.params;
@@ -16,13 +16,13 @@ export default function detailExplo( { route } ){
               style={styles.avatar}
               source={ { uri: img} }
             />
-              <Text style={styles.txt}>Olá {username}</Text>
+              <Text style={styles.txt}>Olá {userrname}</Text>
 
               <Text>
                 <Text style={{fontWeight: 'bold', fontSize:20}}>Nome: </Text>
-                <Text style={styles.txtInfo}>{name} {lastName}</Text>
+                <Text style={styles.txtInfo}>{name} </Text>
               </Text>
-
+              {/* {lastName} */}
               <Text>
                 <Text style={{fontWeight: 'bold', fontSize:20}}>Estado: </Text>
                 <Text style={styles.txtInfo}>{state}</Text>

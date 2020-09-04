@@ -54,6 +54,7 @@ export default class explorer extends Component {
           numColumns={numberGrid} 
           data={this.state.data} 
           renderItem={({ item })=> (
+            // console.log(item),
             <TouchableOpacity 
             onPress={ () => this.props.navigation.navigate('DetailExplo',
             {

@@ -18,14 +18,21 @@ export default class App extends Component {
 
   signIn = async () => {
     try {
+      console.log("error")
       const response = await api.post('/results', {
         email: 'gabrielmk@gmail.com',
         password: '123456',
+      }).success(function(ahe){
+        console.log("sucesspo")
+        response.ok
+        Alert.alert('Logado com sucesso!');
+        this.props.navigation('home')
+      }).error(function(sts){
+        Alert.alert('erro' + sts);
+        console.log("erro: "+ sts)
       });
 
-      response.ok
 
-      Alert.alert('Logado com sucesso!');
     } catch (err) {
       this.setState({ errorMessage: err.data.error });
       Alert.alert('Erro aqui '+err);

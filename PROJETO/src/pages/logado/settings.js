@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Dimensions, Image, SafeAreaView, ActivityIndicator } from 'react-native';
-import firebase from 'firebase';
 let {width} = Dimensions.get('window')
 
-const index = 1
 let numberGrid = 3
 let itemWidth = width / numberGrid
 
@@ -20,7 +18,7 @@ export default class settings extends Component {
 
   loadUsers = () => {
 
-    fetch('http://localhost:3000/results')
+    fetch('http://localhost:3000/results?id=1')
       .then( res => res.json() )
       .then( res => {
         this.setState({
@@ -67,22 +65,14 @@ export default class settings extends Component {
       //       </TouchableOpacity>
       //   );
       // };
+ 
 
   render() {
     return (
       <SafeAreaView style={{flex: 1}}>
-        
-        
         { this.state.data.map((data) => (
-          // const first = data.id.filter(item => item.id --'id'[1]);
-          
-          //console.log(data),
-        //  function(listaData){
-        //   listaData.map((dt) =>{
-        //     console.log(dt)
-        //   })
-        //  },
-          <View keyExtractor={ data => data.id === 'id'+[1]} style={{ marginTop: 15, marginLeft: 10}}>
+         console.log(data.usuario),
+            <View key={data.id}  style={{ marginTop: 15, marginLeft: 10}}>
                     <View style={{flexDirection: 'column', alignItems: 'center'}}>
                       <Image 
                       style={styles.avatar}
@@ -97,47 +87,48 @@ export default class settings extends Component {
                           </View>
                       </View>
                     </View>
-              </View>
+                </View>
           ))}
         
         <View style={styles.container}>
-
+        
        <FlatList  
         numColumns={numberGrid} 
         data={this.state.data} 
-        renderItem={({ item})=> (
-
+        keyExtractor={ item => String(item.usuario) } 
+        renderItem={({item})=> (
+          console.log("--------" +item.id+"--------"),
+          
           <TouchableOpacity 
           onPress={ () => this.props.navigation.navigate('DetailExplo',
           {
-            username: item.login.username,
-            name: item.name.first,
-            lastName: item.name.last,
-            img: item.picture.large,
-            country: item.location.country,
-            state: item.location.state,
+            username: item.usuario,
+            name: item.nome,
+            // lastName: item.,
+            img: item.fotoPerfil,
+            country: item.endereco,
+            state: item.endereco,
           })}
           >
           <View>
             <Image 
               style={styles.itemImage}
               source={{ uri: item.fotoPerfil}}
-            />
+              />
           </View>
 
           </TouchableOpacity>
           
-        )} 
-        
-        keyExtractor={ item => item.id} 
-
-        // refreshing={this.state.refreshing}
-        // onRefresh={this.handleRefresh}
-        />
+          )} 
+          
+          
+          // refreshing={this.state.refreshing}
+          // onRefresh={this.handleRefresh}
+          />
 
         </View>
-
-      </SafeAreaView>
+      {/* </View> */}
+       </SafeAreaView> 
     )
   }
 }
