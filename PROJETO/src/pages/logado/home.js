@@ -82,9 +82,7 @@ export default class home extends Component {
               />
 
               <View style={styles.info}>
-                {/* <Text style={styles.name}> {item.name.first} {item.name.last}</Text> */}
                 <Text style={styles.name}> {item.nome}</Text>
-                {/* <Text style={styles.email}> {item.location.city}{","} {item.location.state} </Text> */}
                 <Text style={styles.email}> {item.endereco} </Text>
               </View>
             </View>
