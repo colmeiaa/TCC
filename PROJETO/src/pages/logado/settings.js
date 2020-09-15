@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, Dimensions, Image, SafeAreaView, ActivityIndicator } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, Dimensions, Image, SafeAreaView } from 'react-native';
 let {width} = Dimensions.get('window')
 
 let numberGrid = 3
@@ -18,7 +18,7 @@ export default class settings extends Component {
 
   loadUsers = () => {
 
-    fetch('http://localhost:3000/results?id=1')
+    fetch('http://localhost:3000/results')
       .then( res => res.json() )
       .then( res => {
         this.setState({
@@ -44,58 +44,42 @@ export default class settings extends Component {
 
   componentDidMount(){
     this.loadUsers();
-};
-
-      // tryLoginOut(){
-      //   const loginOutSucess = user => {
-      //       console.log('Deu certo DESLOGAR')
-      //       this.props.navigation.navigate('Login');
-      //   }
-      // }
-
-      // renderButtom(){
-      //   return(
-      //       <TouchableOpacity 
-      //       style={styles.button}
-      //       onPress={ () => this.tryLoginOut() }
-      //       > 
-      //       <Text style={styles.txtButton}>
-      //           LoginOut
-      //       </Text>
-      //       </TouchableOpacity>
-      //   );
-      // };
- 
+    };
 
   render() {
     return (
       <SafeAreaView style={{flex: 1}}>
-        { this.state.data.map((data) => (
-         console.log(data.usuario),
-            <View key={data.id}  style={{ marginTop: 15, marginLeft: 10}}>
-                    <View style={{flexDirection: 'column', alignItems: 'center'}}>
+        
+        <View>
+        { this.state.data.filter(function(item){
+          return item.id == 1;
+        }).map((data) => (
+         console.log(data),
+            <View key={data.id}ystyle={{ marginTop: 15, marginLeft: 10}}>
+                    <View style={{flexDirection: 'row'}}>
                       <Image 
                       style={styles.avatar}
                       source={{ uri: data.fotoPerfil}}
                       />
-                      <View style={{flexDirection:'column'}}>
-                          <View  key={data.id} style={{paddingLeft:10}}>
-                            <Text style={{ fontWeight: 'bold' }}>{data.nome}</Text>
+                      <View style={{marginLeft:10, justifyContent:'center'}}>
+                          <View  key={data.id}>
+                            <Text style={styles.fontsizeNome}>{data.nome}</Text>
                           </View>
-                          <View style={{paddingLeft:10}}>
-                            <Text>{data.email}</Text>
+                          <View>
+                            <Text style={styles.fontsize}>{data.email}</Text>
                           </View>
                       </View>
                     </View>
                 </View>
           ))}
-        
-        <View style={styles.container}>
+        </View>
         
        <FlatList  
         numColumns={numberGrid} 
-        data={this.state.data} 
-        keyExtractor={ item => String(item.usuario) } 
+        data={this.state.data.filter(function(item){
+          return item.id == 1;
+        })} 
+        key={ item => item.id }
         renderItem={({item})=> (
           console.log("--------" +item.id+"--------"),
           
@@ -104,30 +88,34 @@ export default class settings extends Component {
           {
             username: item.usuario,
             name: item.nome,
-            // lastName: item.,
             img: item.fotoPerfil,
             country: item.endereco,
             state: item.endereco,
           })}
           >
-          <View>
-            <Image 
-              style={styles.itemImage}
-              source={{ uri: item.fotoPerfil}}
+            <View>
+              <FlatList 
+              style={{marginTop: 15}}
+              numColumns={numberGrid}
+              data={this.state.data.filter(function(item){
+                return item.id == 1;
+              })}
+              keyExtractor={ item => String(item.id) }
+              renderItem={({ item }) => (
+              <Image 
+                style={styles.itemImage}
+                source={{ uri: item.fotoPerfil}}
+                />
+              )}
               />
-          </View>
+            </View>
 
           </TouchableOpacity>
           
           )} 
-          
-          
           // refreshing={this.state.refreshing}
           // onRefresh={this.handleRefresh}
           />
-
-        </View>
-      {/* </View> */}
        </SafeAreaView> 
     )
   }
@@ -135,24 +123,27 @@ export default class settings extends Component {
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1, 
-      justifyContent:'center',
-      alignItems:'center'
+      flex: 1,
     },
     itemImage: {
       width: itemWidth,
       height: itemWidth,
       justifyContent: 'space-between'
     },
-
-    item: {
-      flex:1
-    },
     
     avatar: {
-      width:100,
-      height:100,
-      borderRadius:55,
-      padding:5
+      width:120,
+      height:120,
+      borderRadius:65,
+      margin: 10
     },
+
+    fontsize: {
+      fontSize:20
+    },
+
+    fontsizeNome: {
+      fontSize:25,
+      fontWeight: 'bold'
+    }
 })

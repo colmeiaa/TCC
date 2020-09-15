@@ -45,12 +45,11 @@ export default class explorer extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <View>
+        <View style={{flex: 1}}>
           <Text style={{fontSize:30, fontWeight: 'bold'}}>
             Explorer
           </Text>
-        <FlatList  
-          style={{marginBottom: 35}}
+        <FlatList
           numColumns={numberGrid} 
           data={this.state.data} 
           renderItem={({ item })=> (
@@ -96,6 +95,7 @@ const styles = StyleSheet.create({
   itemImage:{
     width: itemWidth,
     height: itemWidth,
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    margin: 1
   }
 });

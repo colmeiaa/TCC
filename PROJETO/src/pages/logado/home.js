@@ -44,7 +44,7 @@ export default class home extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>  
-      <View style={{justifyContent:'center',alignItems:'center'}}>
+      <View style={{justifyContent:'center',alignItems:'center', flex: 1}}>
              <Text style={styles.txt}>
                   AcampApp
              </Text>
@@ -77,14 +77,11 @@ export default class home extends Component {
             <View style={styles.line}> 
               <Image 
                 style={styles.avatar}
-                // source={{ uri: item.picture.thumbnail}}
                 source={{ uri: item.fotoPerfil}}
               />
 
               <View style={styles.info}>
-                {/* <Text style={styles.name}> {item.name.first} {item.name.last}</Text> */}
                 <Text style={styles.name}> {item.nome}</Text>
-                {/* <Text style={styles.email}> {item.location.city}{","} {item.location.state} </Text> */}
                 <Text style={styles.email}> {item.endereco} </Text>
               </View>
             </View>
