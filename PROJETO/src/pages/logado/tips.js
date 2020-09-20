@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, StyleSheet, SafeAreaView, Dimensions, Image } from 'react-native';
+import { View, Text, FlatList, StyleSheet, SafeAreaView, Dimensions, Image, TouchableOpacity } from 'react-native';
 let {width} = Dimensions.get('window')
 
 let numberGrid = 2
@@ -52,12 +52,15 @@ export default class camping extends Component {
             keyExtractor={ item => item.id}
             numColumns={numberGrid}
             renderItem={ ({ item }) => (
-              <View >
-                <Image 
-                style={styles.itemImage}
-                source={item.src}
-                />
-              </View>
+              <TouchableOpacity 
+              onPress={ () => {}}>
+                <View >
+                  <Image 
+                  style={styles.itemImage}
+                  source={item.src}
+                  />
+                </View>
+              </TouchableOpacity>
             )}
             />
           </View>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Dimensions, Image, SafeAreaView } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 let {width} = Dimensions.get('window')
 
 let numberGrid = 3
@@ -49,13 +50,13 @@ export default class settings extends Component {
   render() {
     return (
       <SafeAreaView style={{flex: 1}}>
-        
+
         <View>
         { this.state.data.filter(function(item){
-          return item.id == 1;
+          return item.id == 2;
         }).map((data) => (
          console.log(data),
-            <View key={data.id}ystyle={{ marginTop: 15, marginLeft: 10}}>
+            <View key={data.id} style={{ marginTop: 15, marginLeft: 10}}>
                     <View style={{flexDirection: 'row'}}>
                       <Image 
                       style={styles.avatar}
@@ -73,11 +74,12 @@ export default class settings extends Component {
                 </View>
           ))}
         </View>
-        
+
+
        <FlatList  
         numColumns={numberGrid} 
         data={this.state.data.filter(function(item){
-          return item.id == 1;
+          return item.idade == 21;
         })} 
         key={ item => item.id }
         renderItem={({item})=> (
@@ -93,28 +95,16 @@ export default class settings extends Component {
             state: item.endereco,
           })}
           >
-            <View>
-              <FlatList 
-              style={{marginTop: 15}}
-              numColumns={numberGrid}
-              data={this.state.data.filter(function(item){
-                return item.id == 1;
-              })}
-              keyExtractor={ item => String(item.id) }
-              renderItem={({ item }) => (
-              <Image 
-                style={styles.itemImage}
-                source={{ uri: item.fotoPerfil}}
-                />
-              )}
-              />
-            </View>
+            <Image 
+            style={styles.itemImage}
+            source={{ uri: item.fotoPerfil}} 
+            />
 
           </TouchableOpacity>
           
           )} 
-          // refreshing={this.state.refreshing}
-          // onRefresh={this.handleRefresh}
+           refreshing={this.state.refreshing}
+           onRefresh={this.handleRefresh}
           />
        </SafeAreaView> 
     )
@@ -132,18 +122,18 @@ const styles = StyleSheet.create({
     },
     
     avatar: {
-      width:120,
-      height:120,
+      width:100,
+      height:100,
       borderRadius:65,
       margin: 10
     },
 
     fontsize: {
-      fontSize:20
+      fontSize:15
     },
 
     fontsizeNome: {
-      fontSize:25,
+      fontSize:20,
       fontWeight: 'bold'
     }
 })

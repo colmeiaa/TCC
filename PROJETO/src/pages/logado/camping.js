@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, FlatList, Text,  StyleSheet, SafeAreaView} from 'react-native';
 
-const identi = 1;
 export default class camping extends Component {
   
   constructor(props) {
@@ -41,7 +40,7 @@ export default class camping extends Component {
             { this.state.data.filter(function(item){
               return item.id == 1;
             }).map((data) => (
-              console.log("eroo no 1° view"),
+              console.log("passou do 1° view"),
               <View key={data.id}>
               <Text style={{fontSize:20, fontWeight: 'bold'}}> 
                 Meu nome {data.nome} minha id {data.id}
@@ -57,7 +56,7 @@ export default class camping extends Component {
                   })}
                   keyExtractor={item => item.toString()}
                   renderItem={ ({ item }) => (
-                    console.log("erro no flatlist"),
+                    console.log("passou do flatlist"),
 
                     <View style={{flex:1, marginTop:10}}>
                       <Text> Olá {item.id} | {item.nome} | {item.email}</Text>
