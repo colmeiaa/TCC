@@ -65,7 +65,7 @@ export default class explorer extends Component {
               state: item.location.state,
             })}
             >
-              <View>
+            <View>
               <Image 
                 style={styles.itemImage}
                 source={{ uri: item.picture.large}}

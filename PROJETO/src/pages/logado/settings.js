@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Dimensions, Image, SafeAreaView } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-let {width} = Dimensions.get('window')
+let {width,height} = Dimensions.get('window')
+
+
 
 let numberGrid = 3
 let itemWidth = width / numberGrid
-
 export default class settings extends Component {
   
   constructor(props) {
@@ -16,6 +16,7 @@ export default class settings extends Component {
       refreshing: false
     }
   };
+
 
   loadUsers = () => {
 
@@ -49,64 +50,91 @@ export default class settings extends Component {
 
   render() {
     return (
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaView style={styles.container}>
+        <View style={{flex:1}}>
+              {/* PARTE DO HEADER */}
+                {/* <View style={styles.heeader}>
+                  {this.state.data.filter(function(item){
+                return item.id == 1}).map((data) => (
+                    <Text key={data.id} style={{fontWeight:'bold', fontSize:20}}>{data.nome}</Text>
+                ))}
+                </View> */}
+          
+        <FlatList
+          numColumns={numberGrid} 
+          data={this.state.data.filter(function(item){
+            return item.id == 2 ;
+          })} 
+          renderItem={({ item })=> (
+            <View style={{flex:1}}>
 
-        <View>
-        { this.state.data.filter(function(item){
-          return item.id == 2;
-        }).map((data) => (
-         console.log(data),
-            <View key={data.id} style={{ marginTop: 15, marginLeft: 10}}>
-                    <View style={{flexDirection: 'row'}}>
-                      <Image 
-                      style={styles.avatar}
-                      source={{ uri: data.fotoPerfil}}
-                      />
-                      <View style={{marginLeft:10, justifyContent:'center'}}>
-                          <View  key={data.id}>
-                            <Text style={styles.fontsizeNome}>{data.nome}</Text>
-                          </View>
-                          <View>
-                            <Text style={styles.fontsize}>{data.email}</Text>
+              {/* PARTE RENDER TOP PERFIL */}
+              <View style={{flex:1}}>
+              { this.state.data.filter(function(item){
+                return item.id == 2;
+              }).map((data) => (
+                
+                <View key={data.id}>
+                          <View style={{flexDirection: 'row'}}>
+                            <Image 
+                            key={data.id}
+                            style={styles.avatar}
+                            source={{ uri: data.fotoPerfil}}
+                            />
+                            <View style={{justifyContent:'center'}}>
+                                <View key={data.id}>
+                                  <Text style={styles.fontsizeNome}>{data.nome}</Text>
+                                </View>
+                                <View>
+                                  <Text style={styles.fontsize}>{data.email}</Text>
+                                </View>
+                            </View>
                           </View>
                       </View>
-                    </View>
+                ))}
                 </View>
-          ))}
-        </View>
 
+                  {/* PARTE RENDER IMAGENS */}
+                      <View style={{flex:1,flexDirection:'row', flexWrap:'wrap'}}>
+                      {item.publicacoes.map(index => (
+                        <View key={index.key}>
+                      <TouchableOpacity 
+                        key={index.key}
+                        onPress={ () => this.props.navigation.navigate('FotoView',
+                        {
+                          fotoPerfil: item.fotoPerfil,
+                          nome:  item.nome,
+                          img: index.img,
+                          descr: index.descricao
+                        })}
+                        >
 
-       <FlatList  
-        numColumns={numberGrid} 
-        data={this.state.data.filter(function(item){
-          return item.idade == 21;
-        })} 
-        key={ item => item.id }
-        renderItem={({item})=> (
-          console.log("--------" +item.id+"--------"),
-          
-          <TouchableOpacity 
-          onPress={ () => this.props.navigation.navigate('DetailExplo',
-          {
-            username: item.usuario,
-            name: item.nome,
-            img: item.fotoPerfil,
-            country: item.endereco,
-            state: item.endereco,
-          })}
-          >
-            <Image 
-            style={styles.itemImage}
-            source={{ uri: item.fotoPerfil}} 
-            />
+                            <View>
+                                <Image 
+                                key={index.key}
+                                // style={{flex:1, height: undefined, width: undefined}}
+                                style={styles.itemImage}
+                                source={{uri: index.img}}
+                                />
+                            </View>
 
-          </TouchableOpacity>
-          
+                      </TouchableOpacity>
+                    </View>
+                      ))}
+                  </View>
+                  
+            </View>
+            
           )} 
-           refreshing={this.state.refreshing}
-           onRefresh={this.handleRefresh}
+
+
+          refreshing={this.state.refreshing}
+          onRefresh={this.handleRefresh}
+          
           />
-       </SafeAreaView> 
+
+        </View>
+      </SafeAreaView>
     )
   }
 }
@@ -115,12 +143,20 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
     },
-    itemImage: {
-      width: itemWidth,
-      height: itemWidth,
-      justifyContent: 'space-between'
+    heeader: {
+      justifyContent:'center',
+      alignItems:'center',
     },
-    
+    itemImage: {
+      width:width / 3,
+      height:(height / 3) / 2 ,
+      justifyContent: 'space-between',
+
+      // width: itemWidth,
+      // height: itemWidth,
+      // justifyContent: 'space-between',
+      // margin:1,
+    },
     avatar: {
       width:100,
       height:100,

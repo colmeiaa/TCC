@@ -8,6 +8,9 @@ import tabNav from './TabNavCadastro.routes';
 import Detail from './pages/logado/detail';
 import DetailExplo from './pages/logado/detailExplo';
 import CheckBox from '../src/pages/cadastros/checkbox';
+import PageCamping from './components/PageCamping';
+import FotoView from './pages/logado/fotoView';
+import Settings from './pages/logado/settings';
 
 const Stack = createStackNavigator();
 
@@ -15,12 +18,48 @@ export default function Routes(){
     return(
         <NavigationContainer>
             <Stack.Navigator>
-                {/* <Stack.Screen name='Login' component={Login} options={{title:null, headerTransparent: true, gestureEnabled:false, headerLeft:null}}/> */}
-                <Stack.Screen name='Home' component={Home} options={{title: null, headerTransparent: true, gestureEnabled:false, headerLeft:null}}/>
-                <Stack.Screen name='CheckBox' component={CheckBox} />
-                <Stack.Screen name='Cadastro' component={tabNav} />
-                <Stack.Screen name='Detail' component={Detail} />
-                <Stack.Screen name='DetailExplo' component={DetailExplo} />
+                
+                {/* <Stack.Screen name='Login' 
+                component={Login} 
+                options={{title:null, headerTransparent: true, gestureEnabled:false, headerLeft:null}}/> */}
+
+                <Stack.Screen name='Home' 
+                component={Home} 
+                options={{title: null, headerTransparent: true, gestureEnabled:false, headerLeft:null}}
+                />
+
+                <Stack.Screen name='CheckBox' 
+                component={CheckBox} 
+                />
+
+                <Stack.Screen name='Cadastro' 
+                component={tabNav} 
+                />
+
+                <Stack.Screen name='Detail' 
+                component={Detail} 
+                options={{title:null}}
+                />
+
+                <Stack.Screen name='DetailExplo' 
+                component={DetailExplo} 
+                />
+
+                <Stack.Screen name='PageCamping' 
+                component={PageCamping} 
+                options={{title: null, headerTransparent: true}}
+                />
+
+                <Stack.Screen name='FotoView' 
+                component={FotoView} 
+                options={{title: null}}
+                />
+
+                <Stack.Screen name='Settings' 
+                component={Settings} 
+                options={{title: null}}
+                />
+
             </Stack.Navigator>
         </NavigationContainer>
     );

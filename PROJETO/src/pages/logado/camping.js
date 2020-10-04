@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
-import { View, FlatList, Text,  StyleSheet, SafeAreaView} from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity,FlatList } from 'react-native';
 
-export default class camping extends Component {
-  
+
+export default class Camping extends Component {
+
   constructor(props) {
     super(props);
-  
-    this.state ={
+
+    this.state = {
       data: [],
-      refreshing: false
+      refreshing: false,
     }
   };
 
   loadUsers = () => {
 
-    fetch('http://localhost:3000/results')
-      .then( res => res.json() )
-      .then( res => {
+    fetch('http://localhost:3000/results?_embed=tasks')
+      .then(res => res.json())
+      .then(res => {
         this.setState({
           data: res,
           refreshing: false,
@@ -25,53 +26,86 @@ export default class camping extends Component {
       .catch((error) => {
         console.log(error)
       });
-    };
+  };
 
-    componentDidMount(){
-      this.loadUsers();
-      };
+  componentDidMount() {
+    this.loadUsers();
+  };
   
-
-  render() {
+  render(){
     return (
-      <SafeAreaView stlye={{flex:1}}>
+      <SafeAreaView style={{ flex: 1 }}>
 
-        <View>
-            { this.state.data.filter(function(item){
-              return item.id == 1;
-            }).map((data) => (
-              console.log("passou do 1° view"),
-              <View key={data.id}>
-              <Text style={{fontSize:20, fontWeight: 'bold'}}> 
-                Meu nome {data.nome} minha id {data.id}
-              </Text>
-            </View>
-            ))
-          } 
+        <View style={{ padding: 5 }}>
+          <Text style={{ fontSize: 25, fontWeight: 'bold' }}>
+            Camping List
+          </Text>
         </View>
-              <View>
-                  <FlatList
-                  data={this.state.data.filter(function(item){
-                    return item.id == 1;
-                  })}
-                  keyExtractor={item => item.toString()}
-                  renderItem={ ({ item }) => (
-                    console.log("passou do flatlist"),
 
-                    <View style={{flex:1, marginTop:10}}>
-                      <Text> Olá {item.id} | {item.nome} | {item.email}</Text>
-                    </View>
+        <View style={{flex:1}}>
+           <FlatList 
+           data={this.state.data.filter(function(item){
+             return item.id == 1; 
+           })}
+           keyExtractor={item  => String(item.id)}
+           renderItem={ ({ item }) => (
+             <View style={{flex:1}}>
 
-                  )}
-                  />
-              </View>
+                <View>
+                  { item.notepad.map( index => (
+                    <TouchableOpacity
+                    key={index.id}
+                    onPress={ () => this.props.navigation.navigate('PageCamping',
+                    {
+                      conteudo: index.conteudo,
+                      id: index.id,
+                      data: item
+                    })}
+                    >
+                      <View key={index.id} style={styles.card}>
+                        <Text>{index.id}</Text>
+                      </View>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+
+            </View>
+           )}
+           />
+        </View>
+
+        {/* <FlatList 
+        data={this.state.data.filter(function (item) {
+          return item.id = 1;
+        })}
+        renderItem={({ item }) => (
+
+
+        )}
+        /> */}
       </SafeAreaView>
-      
+
     )
   }
 }
 
 
 const styles = StyleSheet.create({
-  
+  textInput: {
+    borderColor: "gray",
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 20,
+    flex: 1
+  },
+  card: {
+    padding: 15,
+    borderRadius: 10,
+    backgroundColor: '#D3D3D3',
+    margin: 5,
+  },
+  font: {
+    fontSize: 15,
+    fontWeight: 'bold'
+  }
 });

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image }  from 'react-native';
 
 export default function detailExplo( { route } ){
 
-  const { userrname } = route.params;
+  const { username } = route.params;
   const { name } = route.params;
   // const { lastName } = route.params;
   const { img } = route.params;
@@ -16,7 +16,7 @@ export default function detailExplo( { route } ){
               style={styles.avatar}
               source={ { uri: img} }
             />
-              <Text style={styles.txt}>Olá {userrname}</Text>
+              <Text style={styles.txt}>Olá {username}</Text>
 
               <Text>
                 <Text style={{fontWeight: 'bold', fontSize:20}}>Nome: </Text>
