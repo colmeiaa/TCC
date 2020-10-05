@@ -63,7 +63,7 @@ export default class settings extends Component {
         <FlatList
           numColumns={numberGrid} 
           data={this.state.data.filter(function(item){
-            return item.id == 2 ;
+            return item.id == 1 ;
           })} 
           renderItem={({ item })=> (
             <View style={{flex:1}}>
@@ -71,7 +71,7 @@ export default class settings extends Component {
               {/* PARTE RENDER TOP PERFIL */}
               <View style={{flex:1}}>
               { this.state.data.filter(function(item){
-                return item.id == 2;
+                return item.id == 1;
               }).map((data) => (
                 
                 <View key={data.id}>
@@ -81,15 +81,41 @@ export default class settings extends Component {
                             style={styles.avatar}
                             source={{ uri: data.fotoPerfil}}
                             />
-                            <View style={{justifyContent:'center'}}>
+
+                              <View style={{justifyContent:'center',flex:3, marginRight:15}}>
+                                    <View key={item.id} style={{alignContent:'center',flexDirection:'row'}}>
+                                        <View style={{flexDirection:'column', alignItems:'center', flex:1}}>
+                                            <Text style={styles.fontNumbers}>2345</Text>
+                                            <Text style={styles.fontCabecalho}>Post</Text>
+                                        </View>
+                                        <View style={{flexDirection:'column',alignItems:'center', flex:1}}>
+                                            <Text style={styles.fontNumbers}>2345</Text>
+                                            <Text style={styles.fontCabecalho}>Followers</Text>
+                                        </View>
+                                        <View  style={{flexDirection:'column', alignItems:'center', flex:1}}>
+                                            <Text style={styles.fontNumbers}>23455</Text>
+                                            <Text style={styles.fontCabecalho}>Following</Text>
+                                        </View>
+                                     </View>
+                               </View>
+                            
+                          </View>
+
+                            <View style={{justifyContent:'center',marginBottom:10,marginLeft:10}}>
                                 <View key={data.id}>
                                   <Text style={styles.fontsizeNome}>{data.nome}</Text>
                                 </View>
-                                <View>
-                                  <Text style={styles.fontsize}>{data.email}</Text>
+                                <View style={{marginTop:5}}>
+                                  <Text style={styles.fontDesc}>{data.descricaoPerfil}</Text>
                                 </View>
                             </View>
-                          </View>
+
+                            <TouchableOpacity 
+                            style={styles.botaoEdit}
+                            >
+                              <Text>Editar Profile</Text>
+                            </TouchableOpacity>
+
                       </View>
                 ))}
                 </View>
@@ -158,18 +184,36 @@ const styles = StyleSheet.create({
       // margin:1,
     },
     avatar: {
-      width:100,
-      height:100,
+      width:90,
+      height:90,
       borderRadius:65,
       margin: 10
     },
 
-    fontsize: {
-      fontSize:15
+    fontNumbers: {
+      fontSize:16,
+      fontWeight:'bold'
+    },
+
+    fontCabecalho:{
+      fontSize:16,
+    },
+
+    fontDesc:{
+      fontSize:16
     },
 
     fontsizeNome: {
-      fontSize:20,
+      fontSize:18,
       fontWeight: 'bold'
+    },
+
+    botaoEdit: {
+      borderColor:'#ccc',
+      borderWidth:1,
+      borderRadius:15,
+      padding:6,
+      alignItems:'center',
+      margin:10
     }
 })

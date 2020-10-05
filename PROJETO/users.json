@@ -40,6 +40,7 @@
         }
       ],
       "descricao": "E ai mundo C R U E L",
+      "descricaoPerfil": "Essa é minha descrição do meu perfil  queria que fosse melhor mas infelizmente não é",
       "darkTheme": "NAO",
       "permissaoUsuario": "s",
       "notepad": [
@@ -146,8 +147,7 @@
   ],
   "tasks": [
     {
-      
-      "id": "1"
+      "id":"1"
     }
   ]
 }

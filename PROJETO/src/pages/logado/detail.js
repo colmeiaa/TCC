@@ -20,12 +20,12 @@ export default function detail( { navigation, route } ){
         <ScrollView style={{flex:1}}>
 
           <View style={{flex:1}}>
-              <View  style={{flexDirection:'row'}}>
+              <View style={{flex:1, alignItems:'center', margin:10}}>
                 <Image
                 style={styles.avatar}
                 source={{uri: fotoPerfil}}
                 />
-                <View style={{justifyContent:'center'}}>
+                <View style={{justifyContent:'center', margin:10}}>
                   <Text style={{fontSize:25, fontWeight:'bold'}}>{nome}</Text>
                 </View>
               </View>

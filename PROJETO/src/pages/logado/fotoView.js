@@ -27,10 +27,10 @@ export default function FotoView({ route }){
                     source={{uri: img}}
                     />
                 </View>
-                
-                    <Text style={{fontWeight:'bold', fontSize:15}}>{nome}</Text>
-                    <Text style={{flexWrap:'wrap'}}>{descr}</Text>
-                
+                    <View   style={{margin:5}}>
+                            <Text style={{fontWeight:'bold', fontSize:15}}>{nome}</Text>
+                            <Text style={{flexWrap:'wrap'}}>{descr}</Text>
+                    </View>
             </View>
         )
 }
@@ -44,9 +44,9 @@ const styles = StyleSheet.create({
         height:width,
       },
       avatar: {
-        width:40,
-        height:40,
-        borderRadius:50,
+        width:45,
+        height:45,
+        borderRadius:90 /2,
         margin:5,
         alignSelf:'center'
       },

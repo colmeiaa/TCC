@@ -11,7 +11,7 @@ export default function PageCamping( {route} ) {
     const {conteudo} = route.params;
     // const {id} = route.params;
     
-    const [task, setTask] = useState([conteudo]);
+    const [task, setTask] = useState([]);
     const [newTask, setNewTask] = useState("");
 
     // const handleAdd = () => {
@@ -38,15 +38,9 @@ export default function PageCamping( {route} ) {
     async function enviarDados() {
         try {
             const response = await api.put('/tasks/'+id, {
-                 conteudo: [task]
-            }).success(function(){
-                console.log("SUCESSO")
-                response.ok
-                Alert.alert('Logado com sucesso!');
-              }).error(function(sts){
-                Alert.alert('erro' + sts);
-                console.log("erro: "+ sts)
-              });
+              conteudo: task,
+            })
+            console.log("Saida do response = " + response)
         } catch (err) {
             Alert.alert("erro aqui"+err)
             console.log("ERRO NO CATCH "+ err)
