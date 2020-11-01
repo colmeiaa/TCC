@@ -112,6 +112,7 @@ export default class settings extends Component {
 
                             <TouchableOpacity 
                             style={styles.botaoEdit}
+                            onPress={ () => this.props.navigation.navigate('Editar')}
                             >
                               <Text>Editar Profile</Text>
                             </TouchableOpacity>

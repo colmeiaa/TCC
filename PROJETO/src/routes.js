@@ -11,6 +11,7 @@ import CheckBox from '../src/pages/cadastros/checkbox';
 import PageCamping from './components/PageCamping';
 import FotoView from './pages/logado/fotoView';
 import Settings from './pages/logado/settings';
+import Editar from './pages/logado/settingsPart2';
 // import Pdf from '../src/components/pdf';
 
 const Stack = createStackNavigator();
@@ -58,6 +59,11 @@ export default function Routes(){
 
                 <Stack.Screen name='Settings' 
                 component={Settings} 
+                options={{title: null}}
+                />
+                
+                <Stack.Screen name='Editar' 
+                component={Editar} 
                 options={{title: null}}
                 />
                 {/* 
