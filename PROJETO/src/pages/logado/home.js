@@ -44,7 +44,7 @@ export default class home extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>  
-      <View style={{justifyContent:'center',alignItems:'center'}}>
+      <View style={{justifyContent:'center',alignItems:'center', flex: 1}}>
              <Text style={styles.txt}>
                   AcampApp
              </Text>
@@ -56,42 +56,34 @@ export default class home extends Component {
         renderItem={({ item }) => (
 
           <View>
-            {/* <TouchableOpacity 
+            <TouchableOpacity 
           onPress={ () => this.props.navigation.navigate('Detail', 
           {
-            img: item.picture.thumbnail,
-            title: item.name.title, 
-            name: item.name.first, 
-            lastName: item.name.last,
-            email: item.email,
-            location: item.location.street.name,
-            locationNumber: item.location.street.number,
-            city: item.location.city,
-            state: item.location.state,
-            country: item.location.country,
-            username: item.login.username
+            fotoPerfil: item.fotoPerfil,
+            nome: item.nome,
+            feed: item.publicacoes,
+            data: item,
           }
             )}
-          > */}
+          >
+
+          {/* PARTE DAS INFO EM CIMA DA IMAGEM */}
           <View style={{alignItems:"center"}}>
             <View style={styles.line}> 
               <Image 
                 style={styles.avatar}
-                // source={{ uri: item.picture.thumbnail}}
                 source={{ uri: item.fotoPerfil}}
               />
 
               <View style={styles.info}>
-                {/* <Text style={styles.name}> {item.name.first} {item.name.last}</Text> */}
                 <Text style={styles.name}> {item.nome}</Text>
-                {/* <Text style={styles.email}> {item.location.city}{","} {item.location.state} </Text> */}
                 <Text style={styles.email}> {item.endereco} </Text>
               </View>
             </View>
             
           </View>
           
-        {/* </TouchableOpacity> */}
+        </TouchableOpacity>
             
             <View style={{alignItems: 'center'}}>
               <Image 
