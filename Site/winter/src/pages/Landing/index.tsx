@@ -45,6 +45,9 @@ function Landing(){
                             About
                         </a>
 
+                        <a href="/login" className="login">
+                            Login
+                        </a>
                         <a href="/Manual" className="manual">
                             Guia
                         </a>

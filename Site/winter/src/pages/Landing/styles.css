@@ -78,6 +78,9 @@
     background: var(--color-primary-lighter);
 }
 
+.buttons-container a.login{
+    background: var(--color-login);
+}
 .buttons-container a.manual{
     background: var(--color-secundary);
 }
